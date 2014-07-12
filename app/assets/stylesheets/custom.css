@@ -197,9 +197,6 @@ nav a:after {
   /*content: url(../assets/c.png);*/
 }
 
-nav a:last-child: after {
-  content: none;
-}
 
 nav a:hover{
   text-decoration: underline;
