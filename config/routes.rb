@@ -3,7 +3,7 @@ Learn2Code4KidsRails::Application.routes.draw do
   get 'syllabus', :to => 'landing_pages#syllabus'
   post 'email', :to => 'landing_pages#email'
 
-  get 'thank_you', :to => 'landing_pages#thanks'
+  get 'thanks', :to => 'landing_pages#thanks'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
