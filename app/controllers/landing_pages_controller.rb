@@ -12,6 +12,10 @@ class LandingPagesController < ApplicationController
 		end
 	end
 
+	def thanks
+
+	end
+
 	private
 
 	def opt_in_params
