@@ -2,7 +2,8 @@ Learn2Code4KidsRails::Application.routes.draw do
   root :to => 'landing_pages#index'
   get 'syllabus', :to => 'landing_pages#syllabus'
   post 'email', :to => 'landing_pages#email'
-
+  post 'r', :to => 'redirector#create'
+  get 'booking', :to => 'landing_pages#booking'
   get 'thanks', :to => 'landing_pages#thanks'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
