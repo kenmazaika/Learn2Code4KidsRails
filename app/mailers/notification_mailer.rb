@@ -10,7 +10,7 @@ class NotificationMailer < ActionMailer::Base
 
   def opt_in(data)
     @data = data
-    mail(to: ["ken@thefirehoseproject.com", "marco@thefirehoseproject"],
+    mail(to: ["ken@thefirehoseproject.com", "marco@thefirehoseproject.com"],
          subject: "Learn2Code4Kids - OptIn")
   end
 
