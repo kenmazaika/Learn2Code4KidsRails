@@ -37,10 +37,10 @@ input {
 
 }
 
-a.btn-omg {
+button.btn-omg, a.btn-omg {
 	    color: #BF0D0D !important;
 }
-a.btn-omg:hover {
+button.btn-omg:hover, a.btn-omg:hover {
   background-color:#BF0D0D;
   color:white !important;
 }
@@ -86,17 +86,55 @@ border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
     <div style="background-color:#d3360b; font-size:18px; font-weight:; color:white; padding:8px; border-bottom:1px; border-color:#BF0D0D; border-bottom-style:solid;">
       Have any questions?  Schedule a call with Marco!
     </div>
-    <h2 style="font-family:Helvetica Neue, Helvetica, sans-serif;font-weight:200; margin-left:20px; margin-top:10px;" class="pull-left"><%= closest_weekday_in_future.strftime("%A, %B %d") %></h2>
-    <div class="pull-right" style="margin-top:20px; margin-right:20px;">
-      <a href="https://marco-vca.youcanbook.me/">View More Times &raquo;</a></div>
+    <h2 style="font-family:Helvetica Neue, Helvetica, sans-serif;font-weight:200; margin-left:20px; margin-top:10px;"><%= closest_weekday_in_future.strftime("%A, %B %d") %></h2>
 
-      <hr style="clear:both;" />
-    <div class="col-xs-10 col-xs-offset-1" style="margin-top:10px;">
-    <a class="btn btn-default btn-sm btn-omg" href="https://marco-vca.youcanbook.me/" style="border-color:#357ebd;color:#256e9d;">11:15 AM</a>
-    <a class="btn btn-default btn-sm btn-omg" href="https://marco-vca.youcanbook.me/" style="border-color:#357ebd;color:#256e9d;">04:15 PM</a>
+      <hr style="clear:both;margin: 0px !important;"/>
+    <div class="col-xs-10 col-xs-offset-1" style="margin-top:30px;">
 
 
-    <a class="btn btn-default btn-sm btn-omg" href="https://marco-vca.youcanbook.me/" style="border-color:#357ebd;color:#256e9d;">05:45 PM</a>
+      <% if current_opt_in.present?  && current_opt_in.email.present? %>
+    <%= link_to 'Book a Slot to Talk with Marco', r_path(:u => 'YCBM', :p => 'B'),:method => :post, :class => 'btn btn-default btn-lg btn-omg', :style => 'border-color:#357ebd;color:#256e9d;'%>
+
+    <% else %>
+
+<!-- Button trigger modal -->
+<button class="btn btn-default btn-lg btn-omg" data-toggle="modal" data-target="#myModal">
+  Book a Slot to Talk with Marco
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Enter your email so we can schedule a time to talk</h4>
+      </div>
+      <%= form_tag r_path(:u => 'YCBM', :p => 'B'), :id => 'email-form' %>
+        <div class="modal-body">
+
+          <div class="input email required opt_in_email text-center"><label class="email required control-label" for="email">Your Email</label><input class="string email required form-control" id="email" name="opt_in[email]" type="email" /></div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-default btn-danger" style="text-shadow:none;" val="Book Call" />
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    <% end %>
+
+
+
+
   </div>
 
   </div>
@@ -232,6 +270,27 @@ border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
 	    <p>&copy; 2014, Learn2Code4Kids. <a href="mailto:hello@learn2code4kids.com">Contact us</a> or follow us on <a href="http://twitter.com/Learn2Code4Kids">Twitter</a> and </p>
 	    <p class="slogan">Let's start coding!</p>
 	</footer>
+
+
+
+<script>
+$(function() {
+
+
+  $('#email-form').submit(function() {
+    var email = $('#email').val();
+
+
+    $('<input>').attr({
+      type: 'hidden',
+      id: 'o',
+      name: 'o',
+      value: email
+  }).appendTo('#email-form');
+  });
+});
+</script>
+
 
 
 
